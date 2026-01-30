@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administration - Doublons Téléphoniques</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-user-shield"></i> Panneau d'Administration</h1>
+            <p>Gestion avancée des doublons téléphoniques</p>
+        </header>
+
+        <div class="admin-controls">
+            <a href="index.html" class="back-btn">
+                <i class="fas fa-arrow-left"></i> Retour à l'accueil
+            </a>
+            
+            <div class="admin-stats">
+                <h2><i class="fas fa-chart-bar"></i> Statistiques globales</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <h3><i class="fas fa-database"></i> Données stockées</h3>
+                        <p id="totalData">Chargement...</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3><i class="fas fa-history"></i> Dernière action</h3>
+                        <p id="lastAction">Chargement...</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3><i class="fas fa-users"></i> Utilisateurs</h3>
+                        <p id="userCount">Chargement...</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="admin-sections">
+                <div class="admin-section">
+                    <h2><i class="fas fa-sliders-h"></i> Paramètres de détection</h2>
+                    <div class="settings">
+                        <div class="setting">
+                            <label for="minLength">Longueur minimale des numéros:</label>
+                            <input type="number" id="minLength" value="10" min="8" max="15">
+                        </div>
+                        <div class="setting">
+                            <label for="autoDetect">Détection automatique:</label>
+                            <select id="autoDetect">
+                                <option value="true">Activée</option>
+                                <option value="false">Désactivée</option>
+                            </select>
+                        </div>
+                        <button onclick="saveSettings()" class="btn-primary">
+                            <i class="fas fa-save"></i> Enregistrer les paramètres
+                        </button>
+                    </div>
+                </div>
+
+                <div class="admin-section">
+                    <h2><i class="fas fa-trash-restore"></i> Gestion des données</h2>
+                    <div class="data-actions">
+                        <button onclick="backupData()" class="btn-secondary">
+                            <i class="fas fa-download"></i> Sauvegarder les données
+                        </button>
+                        <button onclick="restoreData()" class="btn-secondary">
+                            <i class="fas fa-upload"></i> Restaurer des données
+                        </button>
+                        <button onclick="clearDatabase()" class="btn-danger">
+                            <i class="fas fa-trash"></i> Vider la base de données
+                        </button>
+                        <input type="file" id="restoreFile" accept=".json" style="display: none;">
+                    </div>
+                </div>
+
+                <div class="admin-section">
+                    <h2><i class="fas fa-file-export"></i> Exports et Rapports</h2>
+                    <div class="export-actions">
+                        <button onclick="exportFullReport()" class="btn-success">
+                            <i class="fas fa-file-excel"></i> Rapport complet (CSV)
+                        </button>
+                        <button onclick="exportLogs()" class="btn-secondary">
+                            <i class="fas fa-file-alt"></i> Journal d'activités
+                        </button>
+                        <button onclick="generateStats()" class="btn-primary">
+                            <i class="fas fa-chart-pie"></i> Statistiques détaillées
+                        </button>
+                    </div>
+                </div>
+
+                <div class="admin-section">
+                    <h2><i class="fas fa-shield-alt"></i> Sécurité</h2>
+                    <div class="security-settings">
+                        <div class="setting">
+                            <label for="adminPassword">Changer le mot de passe admin:</label>
+                            <input type="password" id="adminPassword" placeholder="Nouveau mot de passe">
+                            <button onclick="changePassword()" class="btn-small">
+                                <i class="fas fa-key"></i> Changer
+                            </button>
+                        </div>
+                        <div class="setting">
+                            <label for="sessionTimeout">Délai de session (minutes):</label>
+                            <input type="number" id="sessionTimeout" value="30" min="5" max="120">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="activity-log">
+                <h2><i class="fas fa-history"></i> Journal d'activités</h2>
+                <div class="log-container">
+                    <div id="activityLog">
+                        <!-- Les activités seront ajoutées ici -->
+                    </div>
+                </div>
+                <button onclick="clearLogs()" class="btn-small">
+                    <i class="fas fa-broom"></i> Effacer le journal
+                </button>
+            </div>
+        </div>
+
+        <footer>
+            <p>© 2024 Administration Doublons Téléphoniques - Accès restreint</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+                      </html>
