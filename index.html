@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion des Doublons Téléphoniques</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-mobile-alt"></i> Gestion des Doublons Téléphoniques</h1>
+            <p>Identifiez et supprimez les numéros en double dans vos listes</p>
+        </header>
+
+        <div class="login-section" id="loginSection">
+            <div class="login-box">
+                <h2><i class="fas fa-lock"></i> Accès Administrateur</h2>
+                <input type="password" id="password" placeholder="Mot de passe admin" autocomplete="off">
+                <button onclick="login()">Se connecter</button>
+                <p class="demo-info">Mot de passe démo: <strong>admin123</strong></p>
+            </div>
+        </div>
+
+        <main id="mainContent" style="display: none;">
+            <div class="stats-bar">
+                <div class="stat">
+                    <i class="fas fa-phone"></i>
+                    <span id="totalNumbers">0</span>
+                    <p>Numéros total</p>
+                </div>
+                <div class="stat">
+                    <i class="fas fa-clone"></i>
+                    <span id="duplicateCount">0</span>
+                    <p>Doublons détectés</p>
+                </div>
+                <div class="stat">
+                    <i class="fas fa-check-circle"></i>
+                    <span id="uniqueCount">0</span>
+                    <p>Numéros uniques</p>
+                </div>
+            </div>
+
+            <div class="upload-section">
+                <h2><i class="fas fa-upload"></i> Importer des numéros</h2>
+                <div class="upload-area" id="uploadArea">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    <p>Glissez-déposez un fichier CSV/TXT ou cliquez pour parcourir</p>
+                    <input type="file" id="fileInput" accept=".csv,.txt,.json">
+                    <p class="file-info">Formats acceptés: CSV, TXT (un numéro par ligne)</p>
+                </div>
+                <div class="sample-data">
+                    <button onclick="loadSampleData()">
+                        <i class="fas fa-vial"></i> Charger des données d'exemple
+                    </button>
+                </div>
+            </div>
+
+            <div class="actions-section">
+                <h2><i class="fas fa-cogs"></i> Actions</h2>
+                <div class="action-buttons">
+                    <button onclick="detectDuplicates()" class="btn-primary">
+                        <i class="fas fa-search"></i> Détecter les doublons
+                    </button>
+                    <button onclick="removeDuplicates()" class="btn-success">
+                        <i class="fas fa-trash-alt"></i> Supprimer les doublons
+                    </button>
+                    <button onclick="exportNumbers()" class="btn-secondary">
+                        <i class="fas fa-download"></i> Exporter les numéros uniques
+                    </button>
+                    <button onclick="clearAll()" class="btn-danger">
+                        <i class="fas fa-broom"></i> Tout effacer
+                    </button>
+                </div>
+            </div>
+
+            <div class="results-section">
+                <h2><i class="fas fa-list"></i> Résultats</h2>
+                <div class="tabs">
+                    <button class="tab active" onclick="showTab('all')">Tous les numéros</button>
+                    <button class="tab" onclick="showTab('duplicates')">Doublons uniquement</button>
+                    <button class="tab" onclick="showTab('unique')">Uniques uniquement</button>
+                </div>
+                <div class="results-container">
+                    <div class="table-container">
+                        <table id="resultsTable">
+                            <thead>
+                                <tr>
+                                    <th>Numéro</th>
+                                    <th>Occurrences</th>
+                                    <th>Statut</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="resultsBody">
+                                <!-- Les résultats seront insérés ici -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="admin-link">
+                <button onclick="openAdmin()" class="btn-admin">
+                    <i class="fas fa-user-shield"></i> Panneau d'administration
+                </button>
+            </div>
+        </main>
+
+        <footer>
+            <p>© 2024 Gestion des Doublons Téléphoniques - Outil de nettoyage de données</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
